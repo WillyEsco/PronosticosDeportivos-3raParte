@@ -3,12 +3,21 @@
 
 ## __Datos de la Presentación__
 
+<a name="top"></a>
+
 #### Fecha Tercera Entrega: ...
 >##### Integrantes por orden alfabético:
 >* __`Guillermo Escobar`__
 >* __`Norma Ramirez`__
 >* __`Pablo Martin Torres`__
 >* __`Juan Carlos Alderete`__
+
+## Índice de contenidos
+
+1. [Introducción](#item1)
+2. [Entrega 2](#item2)
+3. [Entrega 3](#item3)
+4. [Entrega 4](#item4)
 
 ## **Comandos simples para ejecutar con maven**
 
@@ -49,6 +58,10 @@ mvn exec:java -Dexec.mainClass=com.grupo10_150.App
 
 ------
 
+<a name="item1"></a>
+
+[Subir](#top)
+
 ## Introducción
 Nos han solicitado el desarrollo de un programa de Pronósticos Deportivos.
 Un pronóstico deportivo consta de un posible resultado de un partido (que un equipo gane,
@@ -77,7 +90,7 @@ cualquier momento
   <img  src="./assets/clases.png" width="80%" height="80%" />
 </p>
 
-
+<a name="item2"></a>
 >__ENTREGA 1:__ A partir del esquema original propuesto, desarrollar un programa que lea un archivo de
 partidos y otro de resultados, el primero correspondiente a una ronda y el otro que contenga
 los pronósticos de una persona1. Cada ronda debe tener una cantidad fija de partidos.
@@ -90,6 +103,10 @@ __Se considera una única ronda y un único participante en esta entrega__
 <p align="center">
   <img  src="./assets/Dibujo1.png" width="80%" height="80%"  />
 </p>
+
+<a name="item3"></a>
+
+[Subir](#top)
 
 ##  ___Entrega 2___ 
 En esta entrega se debe poder soportar que los archivos contengan información de muchas
@@ -140,5 +157,32 @@ Leyendo los 2 (dos) archivos, y suponiendo que cada resultado acertado suma 1 (u
 <p align="center">
   <img  src="./assets/entrega2.png" width="90%" height="90%"  />
 </p>
- 
+
+<a name="item4"></a>
+
+##  ___Entrega 3___
+
+[Subir](#top)
+
+En esta entrega se deben poder leer los pronósticos desde una base de datos MySQL. Por
+otro lado, debe poder ser configurable la cantidad de puntos que se otorgan cuando se acierta
+un resultado (ganar, perder, empatar).
+
+Finalmente, se agregan 2(dos) reglas para la asignación de puntajes de los participantes:
+
+- Se suman puntos extra cuando se aciertan todos los resultados de una ronda.
+- Se suman puntos extra cuando se aciertan todos los resultados de una fase
+
+(nuevamente, hace falta modificar los archivos para agregar este dato) sobre un equipo. 
+Se debe considerar que una fase es un conjunto de rondas.
+
+Se recomienda analizar qué estrategia se puede aplicar para incluir otras nuevas reglas con el
+menor impacto posible, de forma simple.
+
+En esta entrega, el programa debe:
+
+- Estar actualizado en el repositorio de Git.
+- Recibir como argumento un archivo con los resultados y otro con configuración, por ejemplo: conexión a la DB, puntaje por partido ganado, puntos extra, etc.
+
+------
 
