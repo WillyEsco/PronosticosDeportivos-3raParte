@@ -91,7 +91,10 @@ cualquier momento
 </p>
 
 <a name="item2"></a>
->__ENTREGA 1:__ A partir del esquema original propuesto, desarrollar un programa que lea un archivo de
+
+------
+# __ENTREGA 1:__ 
+A partir del esquema original propuesto, desarrollar un programa que lea un archivo de
 partidos y otro de resultados, el primero correspondiente a una ronda y el otro que contenga
 los pronósticos de una persona1. Cada ronda debe tener una cantidad fija de partidos.
 <br> 
@@ -108,7 +111,8 @@ __Se considera una única ronda y un único participante en esta entrega__
 
 [Subir](#top)
 
-##  ___Entrega 2___ 
+------
+#  __ENTREGA 2__ 
 En esta entrega se debe poder soportar que los archivos contengan información de muchas
 rondas y de muchas personas (para eso hay que agregar los datos de ronda y persona en los
 archivos correspondientes).
@@ -151,6 +155,7 @@ El programa debe:
 Leyendo los 2 (dos) archivos, y suponiendo que cada resultado acertado suma 1 (un) punto, la salida del programa debe ser:
 
 **Mariana: 2**
+
 **Pedro: 1**
 
 # __Diagrama de Clases entrega 2__ 
@@ -160,7 +165,8 @@ Leyendo los 2 (dos) archivos, y suponiendo que cada resultado acertado suma 1 (u
 
 <a name="item4"></a>
 
-##  ___Entrega 3___
+------
+#  ___ENTREGA 3___
 
 [Subir](#top)
 
