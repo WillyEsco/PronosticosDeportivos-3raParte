@@ -15,9 +15,9 @@
 ## Índice de contenidos
 
 1. [Introducción](#item1)
-2. [Entrega 2](#item2)
-3. [Entrega 3](#item3)
-4. [Entrega 4](#item4)
+2. [Entrega 1](#item2)
+3. [Entrega 2](#item3)
+4. [Entrega 3](#item4)
 
 ## **Comandos simples para ejecutar con maven**
 
@@ -132,12 +132,12 @@ El programa debe:
 
 #### Archivo resultados.csv:
 
-| Ronda |    Equipo 1    | Cant. goles 1 | Cant. goles 2 |    Equipo 2    |
-| :---: | :------------: | :-----------: | :-----------: | :------------: |
-|   1   |   Argentina    |       1       |       2       | Arabia Saudita |
-|   1   |    Polonia     |       0       |       0       |     México     |
-|   1   |   Argentina    |       2       |       0       |     México     |
-|   1   | Arabia Saudita |       0       |       2       |    Polonia     |
+| Ronda |    Equipo 1    | CantGoles1 | CantGoles2 |    Equipo 2    |
+| :---: | :------------: | :--------: | :--------: | :------------: |
+|   1   |   Argentina    |     1      |     2      | Arabia Saudita |
+|   1   |    Polonia     |     0      |     0      |     México     |
+|   1   |   Argentina    |     2      |     0      |     México     |
+|   1   | Arabia Saudita |     0      |     2      |    Polonia     |
 
 #### Archivo pronosticos.csv:
 
