@@ -34,9 +34,9 @@ public class Participante {
         if ( ronda == 0.0) {
             System.out.println("NOMBRE " + nombre + " (ID: "  + participanteID +")\n") ;
             System.out.println("PUNTOS OBTENIDOS: ");
-            System.out.println("Puntaje Total: " + String.valueOf(Math.round(this.puntajeList.get(0)))  + " puntos " );
+            System.out.println("Puntaje Total:     " + String.valueOf(Math.round(this.puntajeList.get(0)))  + " puntos " );
         } else {
-            System.out.println("Ronda " + ronda + " Puntos: " + String.valueOf(Math.round(this.puntajeList.get(ronda))) +" puntos");
+            System.out.println("Ronda " + ronda + " - Puntos:  " + String.valueOf(Math.round(this.puntajeList.get(ronda))) +" puntos");
         }
        
     }
