@@ -1,5 +1,5 @@
 ﻿Ronda - id;Ronda - nro;Equipo 1 - id;Equipo 1 - nombre;Equipo 1 - descripcion;Equipo 1 - cantidad goles;Equipo 2 - cantidad goles;Equipo 2 - id;Equipo 2 - nombre;Equipo 2 - descripcion
 1;1;1;Argentina;Seleccionado;1;2;2;Arabia Saudita;Seleccionado
 1;1;3;Polonia;Seleccionado;0;0;4;México;Seleccionado
-1;1;1;Argentina;Seleccionado;2;0;4;México;Seleccionado
-1;1;2;Arabia Saudita;Seleccionado;0;2;3;Polonia;Seleccionado
+2;2;1;Argentina;Seleccionado;2;0;4;México;Seleccionado
+2;2;2;Arabia Saudita;Seleccionado;0;2;3;Polonia;Seleccionado

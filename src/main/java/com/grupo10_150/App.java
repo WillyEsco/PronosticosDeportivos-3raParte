@@ -46,15 +46,18 @@ public class App {
        ArrayList <Pronostico> pronosticosList = lectorCsv.crearPronosticos(partidosList);
        
         // Calculo los puntos
-        ArrayList <Participante> participantesList = lectorCsv.procesoParticipantes(pronosticosList);
-    
+       
+     //   ArrayList <Participante> participantesList = lectorCsv.procesoParticipantes(pronosticosList);
+            System.out.println("\nCant. de participantes: " + lectorCsv.getParticipanteList().size());
             // proceso los participantes y acumulo los puntos de cada ronda
-            for (Participante p : participantesList ) {    
-                    System.out.println("==========================================================");
-                    System.out.println(p.toString());
-                    System.out.println("==========================================================");
+            for (Participante p : lectorCsv.getParticipanteList()){    
+                p.calcularPuntaje(pronosticosList);
+                System.out.println("==========================================================");
+                System.out.println(p.toString());
+                System.out.println("==========================================================");
             }
-        }
+
     }
+}
     
 

@@ -1,5 +1,8 @@
 package com.grupo10_150;
 
+import java.util.ArrayList;
+
+
 public class Pronostico {
     private Participante participante;
     private Partido partido;
@@ -15,6 +18,7 @@ public class Pronostico {
   //  public double getPuntos() {
         public void  getPuntos() {
         double puntos = 0;
+
         if (partido.getGana() == 0 && this.resultadoPronosticado == ResultadoEnum.EMPATE){
             puntos = 0.5;
         }
@@ -25,18 +29,35 @@ public class Pronostico {
             && partido.getGana() != 0){
             puntos = 0.5;
         }
-       
+        
+        ArrayList<Double> arrayPuntos = this.participante.getPuntajeList();
 
-        this.participante.setPuntosObtenidos(this.participante.getPuntosObtenidos() + puntos);
-        // System.out.println(this.toString());
-        // System.out.println("Tajeta obtuvo: " + puntos);
-        // System.out.println("Total hasta ahora: " + this.participante.getPuntosObtenidos());
+
+        if (arrayPuntos.size() == 0 ) {
+            //genero el elemento 0 en el arrayque tendrá la suma de los puntos totales de las rondas
+            arrayPuntos.add(0, 0.0);
+        }
+        if (arrayPuntos.size() == this.partido.getRondaNro() ) {
+            // preparo el contador para sumar la ronda uno en el elemento uno del array
+            arrayPuntos.add(partido.getRondaNro(), 0.0);
 
         }
 
+
+    
+      
+        arrayPuntos.set(partido.getRondaNro(), arrayPuntos.get(this.partido.getRondaNro()) + puntos);
+        arrayPuntos.set(0, arrayPuntos.get(0) + puntos);
+
+
+   
+        this.getParticipante().setPuntajeList(arrayPuntos);
+ 
+        }
+
         
-    public String getParticipante() {
-            return this.participante.getNombre();
+    public Participante getParticipante() {
+        return this.participante;
     }
 
     public void setParticipante(Participante participante) {
@@ -50,7 +71,13 @@ public class Pronostico {
     public void setEquipo(Equipo equipo) {
         this.equipo = equipo;
     }
-
+    public Participante getParticipanteObj() {
+        return this.participante;
+    }
+    
+    public int getParticipanteID() {
+        return this.participante.getParticipanteID();
+    }
 
     public Partido getPartido() {
         return this.partido;

@@ -10,10 +10,12 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 @Data
-@Setter
+@NoArgsConstructor
 @Getter
-@NoArgsConstructor  
+@Setter
+
 
 public class LectorCsv {
     String resuFile;
@@ -85,31 +87,27 @@ public class LectorCsv {
         Equipo equipo2Aux;
         Partido partidoAux;
         partidosRondaList = new ArrayList<Partido>(); 
-        int rondaID_Ant=0;
-        int rondaAux = 0;
-        int rondaAnt = 0;
+ 
+        int ronda = 0;
         int i=0; // nro de match (vienen en orden)
-        rondaAux = this.lineasResultados.get(0).getNroRonda();  
+        ronda = this.lineasResultados.get(0).getNroRonda();  
+
         for ( PartidoBind r : this.lineasResultados) {
 
             // agrego el partido al array de partidos   
-
-            if (rondaAux != r.getNroRonda()){
-                rondaAnt = rondaAux;
-                rondaAux = r.getNroRonda(); 
-                rondaList.add(new Ronda(rondaID_Ant, rondaAnt, partidosRondaList));
+            if (ronda != r.getNroRonda()){
+             //   rondaAnt = rondaAux;
+                ronda = r.getNroRonda(); 
+                rondaList.add(new Ronda(r.getRondaID(), r.getNroRonda(), partidosRondaList));
                 partidosRondaList = new ArrayList<Partido>(); 
             }
+
                 i++;
                 equipo1Aux = new Equipo(r.getEquipo1ID(),r.getEquipo1_nombre(),r.getEquipo1_descripcion());
                 equipo2Aux = new Equipo(r.getEquipo2ID(),r.getEquipo2_nombre(),r.getEquipo2_descripcion());
                 partidoAux = new Partido(r.getNroRonda(), equipo1Aux, equipo2Aux, r.getEquipo1_goles(), r.getEquipo2_goles(), i);
                 partidosList.add(partidoAux);
-                partidosRondaList.add(partidoAux);
-                rondaAnt = rondaAux; 
-                rondaID_Ant = r.getRondaID();   
-                
-    
+                partidosRondaList.add(partidoAux);        
         }
         setRondaList(rondaList); 
         return partidosList;
@@ -119,76 +117,78 @@ public class LectorCsv {
    public ArrayList<Pronostico> crearPronosticos(ArrayList<Partido> partidosList){
         ArrayList<Pronostico> pronosticosList = new ArrayList<Pronostico>(); 
         ArrayList<Participante> participanteList = new ArrayList<Participante>();
-
+        ArrayList<Double> puntajeList = new ArrayList<Double>();
         Participante participanteAux=null;
-        Partido matchAux = new Partido();
-
+        Partido partido = new Partido();
         boolean encontre = false;
         for (PronosticoBind pb : this.lineasProde) {
-            // armo las tarjetas de los pronosticos y los agrego a la lista de pronosticos
+
             //incluyo el objeto paticipante, el nro de ronda, el objeto partido (match), el equipo ganador y el resultado
 
             // creo la listade participantes 
- 
+            
             // busco el participante en la lista y si no está lo agrego
-            encontre =false;
-            for (Participante p : participanteList) {
-                if (p.getParticipanteID() == pb.getParticipanteID()) {
-                    participanteAux = p;
-                    encontre = true;
+            encontre = false;
+                for (Participante p : participanteList) {
+                    if (p.getParticipanteID() == pb.getParticipanteID()) {
+                        participanteAux = p;
+                        encontre = true;
+                    }
                 }
-            }
-            if (!encontre) {
-                participanteAux = new Participante(pb.getParticipanteID(), pb.getNombre(),0);
-                participanteList.add(participanteAux);
-            }
+
+                if (!encontre) {
+                    puntajeList = new ArrayList<Double>();
+                    participanteAux = new Participante(pb.getParticipanteID(), pb.getNombre(),puntajeList);
+                    participanteList.add(participanteAux);
+                }
 
                 
-            // busco el objeto partido en la listade partidos
-            for (Partido match : partidosList) {
-                if (match.getEquipo1().getEquipoID() == pb.getEquipo1ID() && match.getEquipo2().getEquipoID() == pb.getEquipo2ID()) {
-                    matchAux = match;
+                // busco el objeto partido en la listade partidos
+                for (Partido match : partidosList) {
+                    if (match.getEquipo1().getEquipoID() == pb.getEquipo1ID() && match.getEquipo2().getEquipoID() == pb.getEquipo2ID()) {
+                        partido = match;
+                    }
                 }
-            }
        
                 if (pb.getGana1().equals("X")) {
                     // busco equipo1 y equipo2 en partidosList
-                    pronosticosList.add(new Pronostico(participanteAux, matchAux, matchAux.getEquipo1(), ResultadoEnum.GANADOR));
-                    pronosticosList.add(new Pronostico(participanteAux, matchAux, matchAux.getEquipo2(), ResultadoEnum.PERDEDOR));
-                    }
+                    pronosticosList.add(new Pronostico(participanteAux, partido, partido.getEquipo1(), ResultadoEnum.GANADOR));
+                        // indice = pronosticosList.size()-1;
+                        // pronosticosList.get(indice).getPuntos();
+                    pronosticosList.add(new Pronostico(participanteAux, partido, partido.getEquipo2(), ResultadoEnum.PERDEDOR));
+                        // indice = pronosticosList.size()-1;
+                        // pronosticosList.get(indice).getPuntos();
+                }
         
                 if (pb.getGana2().equals("X")) {
                     // busco equipo1_id en partidosList   
-                        pronosticosList.add(new Pronostico(participanteAux,  matchAux, matchAux.getEquipo2(), ResultadoEnum.GANADOR));
-                        pronosticosList.add(new Pronostico(participanteAux,  matchAux , matchAux.getEquipo1(), ResultadoEnum.PERDEDOR));
+                        pronosticosList.add(new Pronostico(participanteAux,  partido, partido.getEquipo2(), ResultadoEnum.GANADOR));
+                            // indice = pronosticosList.size()-1;
+                            // pronosticosList.get(indice).getPuntos();
+                        pronosticosList.add(new Pronostico(participanteAux,  partido , partido.getEquipo1(), ResultadoEnum.PERDEDOR));
+                            // indice = pronosticosList.size()-1;
+                            // pronosticosList.get(indice).getPuntos();                      
                     }
                 
                 if (pb.getEmpata().equals("X")) {
                     // busco equipo1_id en partidosList              
-                        pronosticosList.add(new Pronostico(participanteAux, matchAux , matchAux.getEquipo1(), ResultadoEnum.EMPATE));               
-                        pronosticosList.add(new Pronostico(participanteAux, matchAux , matchAux.getEquipo2(), ResultadoEnum.EMPATE));               
+                       pronosticosList.add(new Pronostico(participanteAux, partido , partido.getEquipo1(), ResultadoEnum.EMPATE));   
+                            // indice = pronosticosList.size()-1;
+                            // pronosticosList.get(indice).getPuntos();      
+                       pronosticosList.add(new Pronostico(participanteAux, partido , partido.getEquipo2(), ResultadoEnum.EMPATE));                            
+                            // indice = pronosticosList.size()-1;
+                            // pronosticosList.get(indice).getPuntos();                     
                     }
-                participanteAux=null;
-   
-        }
-        // this.participanteList = participanteList;
-        setParticipanteList(participanteList);
-        // System.out.println("Cantidad de pronosticos: " + pronosticosList.size());
-        // System.out.println("Cantidad de participantes: " + participanteList.size());
-        // System.out.println("Cantidad de partidos: " + partidosList.size());
-        // for (int i = 0; i < partidosList.size(); i++) {
-        //     System.out.println(partidosList.get(i).toString());
-        // }          
-        // for (int i = 0; i < pronosticosList.size(); i++) {
-        //     System.out.println(pronosticosList.get(i).toString());
-        // }   
-        // for (int i = 0; i < participanteList.size(); i++) {
-        //     System.out.println(participanteList.get(i).toString());
-        // }   
-        return pronosticosList;
-   }
 
+  
         
+        }
+        setParticipanteList(participanteList);
+        return pronosticosList;
+    }
+   
+
+
    public ArrayList<Participante> getParticipanteList(){
          return this.participanteList;
     }
@@ -197,12 +197,24 @@ public class LectorCsv {
     }
     public ArrayList<Participante> procesoParticipantes(ArrayList <Pronostico> pronosticosList){
         // recorro tarjetas de pronosticos y voy sumando puntos a los participantes
+        ArrayList<Participante> listaApostadores ;
+        listaApostadores = this.getParticipanteList();
 
-        for (Pronostico pronostico : pronosticosList) {
-            pronostico.getPuntos();
-        }
+        for ( Participante participante : this.getParticipanteList()) {
+            for (Pronostico pronostico : pronosticosList) {
+                if (pronostico.getParticipanteID() == participante.getParticipanteID()) {
+                    //participante.setPuntos(pronostico.getPuntos());
+                    pronostico.getPuntos();
+                }
+                
+            }
+        }   
+
+    
+        this.setParticipanteList(listaApostadores);
         return this.participanteList;
 
     }
+
         
 }
