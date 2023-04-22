@@ -1,5 +1,7 @@
 package com.grupo10_150;
 
+import java.lang.ref.Cleaner;
+
 /**
  * Pronosticos Deportivos
  *    GRUPO 10 - 150
@@ -24,18 +26,20 @@ public class App {
             }
 
         }else{
-            System.out.print("\033[H\033[2J");
-            System.out.println("================================================");  
-            System.out.println("                SIN ARGUMENTOS");  
-            System.out.println("================================================");  
-            System.out.println("**    Alguno de los archivos no se declaran   **");
-            System.out.println("** Por lo tanto toman los archivos de muestra **");
-            System.out.println("**         desde:  src\\test\\resources         **");
-            System.out.println("************************************************");
+            // System.out.print("\033[H\033[2J");
+            // System.out.println("================================================");  
+            // System.out.println("                SIN ARGUMENTOS");  
+            // System.out.println("================================================");  
+            // System.out.println("**    Alguno de los archivos no se declaran   **");
+            // System.out.println("** Por lo tanto toman los archivos de muestra **");
+            // System.out.println("**         desde:  src\\test\\resources         **");
+            // System.out.println("************************************************");
              resuFile = ".\\src\\test\\resources\\resultados.csv";
              pronFile= ".\\src\\test\\resources\\pronostico.csv";
         }
-
+            System.out.println("===========================================================");  
+            System.out.println("                       P R O D E");  
+            System.out.println("===========================================================");  
        LectorCsv lectorCsv = new LectorCsv(resuFile,pronFile);
 
        //Obtengo todas las líneas del archivo CSV
