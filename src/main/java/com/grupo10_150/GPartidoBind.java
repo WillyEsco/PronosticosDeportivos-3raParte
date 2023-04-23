@@ -1,20 +1,17 @@
 package com.grupo10_150;
 import com.opencsv.bean.CsvBindByPosition;
  
-
 //Lombok
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 @Data
-
 @Setter
 @Getter
-
 @NoArgsConstructor  
 
-public class PartidoBind {
+public class GPartidoBind {
     @CsvBindByPosition(position = 0) 
     private int rondaID;    
     @CsvBindByPosition(position = 1) 

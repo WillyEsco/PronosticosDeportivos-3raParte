@@ -19,24 +19,20 @@ import lombok.Setter;
 
 public class LectorCsv {
     String resuFile;
-    String pronFile;
-    List<PartidoBind> lineasResultados;
-    List<PronosticoBind> lineasProde;
+    List<GPartidoBind> lineasResultados;
     ArrayList<Participante> participanteList;
     ArrayList<Ronda> rondaList;
 
     public LectorCsv(String resuFile, String pronFile) {
         this.resuFile = resuFile;
-        this.pronFile = pronFile;
         this.lineasResultados = new ArrayList<>();
-        this.lineasProde = new ArrayList<>();
         this.rondaList = new ArrayList<>();
     }
 
 
     public void parsearResultados() {
 
-        List<PartidoBind> ListaDeResultados = null;
+        List<GPartidoBind> ListaDeResultados = null;
 
         try {
             // En esta primera línea definimos el archivos que va a ingresar
@@ -46,7 +42,7 @@ public class LectorCsv {
                     // con esta configuración podemos elegir cual es el caracter que vamos a usar para delimitar
                     .withSeparator(';')
                     // Es necesario definir el tipo de dato que va a generar el objeto que estamos queriendo parsear a partir del CSV
-                    .withType(PartidoBind.class)
+                    .withType(GPartidoBind.class)
                     .build()
                     .parse();
 
@@ -56,26 +52,6 @@ public class LectorCsv {
         this.lineasResultados=ListaDeResultados;
         }
 
-    public void parsearProde() {
-        List<PronosticoBind> ListaDePronosticos = null;
-
-        try {
-            // En esta primera línea definimos el archivos que va a ingresar
-            ListaDePronosticos = new CsvToBeanBuilder(new FileReader(this.pronFile))
-                    // con esta configuración podemos skipear la primera línea de nuestro archivo CSV
-                    .withSkipLines(1)
-                    // con esta configuración podemos elegir cual es el caracter que vamos a usar para delimitar
-                     .withSeparator(';')
-                    // Es necesario definir el tipo de dato que va a generar el objeto que estamos queriendo parsear a partir del CSV
-                    .withType(PronosticoBind.class)
-                    .build()
-                    .parse();
-
-        } catch (IOException e) {
-        e.printStackTrace();
-    }
-        this.lineasProde=ListaDePronosticos;
-    }
 
 // Crear resultados de partidos
     public ArrayList<Partido> crearResultados() {
@@ -92,11 +68,11 @@ public class LectorCsv {
         int i=0; // nro de match (vienen en orden)
         ronda = this.lineasResultados.get(0).getNroRonda();  
 
-        for ( PartidoBind r : this.lineasResultados) {
+        for ( GPartidoBind r : this.lineasResultados) {
 
             // agrego el partido al array de partidos   
             if (ronda != r.getNroRonda()){
-             //   rondaAnt = rondaAux;
+
                 ronda = r.getNroRonda(); 
                 rondaList.add(new Ronda(r.getRondaID(), r.getNroRonda(), partidosRondaList));
                 partidosRondaList = new ArrayList<Partido>(); 
@@ -118,16 +94,20 @@ public class LectorCsv {
         ArrayList<Pronostico> pronosticosList = new ArrayList<Pronostico>(); 
         ArrayList<Participante> participanteList = new ArrayList<Participante>();
         ArrayList<Double> puntajeList = new ArrayList<Double>();
+        ArrayList<PronosticoDB> pronosticoDBlist = new ArrayList<PronosticoDB>();
         Participante participanteAux=null;
         Partido partido = new Partido();
         boolean encontre = false;
-        for (PronosticoBind pb : this.lineasProde) {
+
+        //
+        participanteList =  LeerTablaParticipantes.LeerPersonas();
+        pronosticoDBlist =  LeerTablaPronostico.LeerPronostico();
+        for (PronosticoDB pb : pronosticoDBlist) {
 
             //incluyo el objeto paticipante, el nro de ronda, el objeto partido (match), el equipo ganador y el resultado
-
-            // creo la listade participantes 
-            
+            // creo la listade participantes            
             // busco el participante en la lista y si no está lo agrego
+
             encontre = false;
                 for (Participante p : participanteList) {
                     if (p.getParticipanteID() == pb.getParticipanteID()) {
@@ -153,21 +133,14 @@ public class LectorCsv {
                 if (pb.getGana1().equals("X")) {
                     // busco equipo1 y equipo2 en partidosList
                     pronosticosList.add(new Pronostico(participanteAux, partido, partido.getEquipo1(), ResultadoEnum.GANADOR));
-                        // indice = pronosticosList.size()-1;
-                        // pronosticosList.get(indice).getPuntos();
                     pronosticosList.add(new Pronostico(participanteAux, partido, partido.getEquipo2(), ResultadoEnum.PERDEDOR));
-                        // indice = pronosticosList.size()-1;
-                        // pronosticosList.get(indice).getPuntos();
+
                 }
         
                 if (pb.getGana2().equals("X")) {
                     // busco equipo1_id en partidosList   
                         pronosticosList.add(new Pronostico(participanteAux,  partido, partido.getEquipo2(), ResultadoEnum.GANADOR));
-                            // indice = pronosticosList.size()-1;
-                            // pronosticosList.get(indice).getPuntos();
-                        pronosticosList.add(new Pronostico(participanteAux,  partido , partido.getEquipo1(), ResultadoEnum.PERDEDOR));
-                            // indice = pronosticosList.size()-1;
-                            // pronosticosList.get(indice).getPuntos();                      
+                        pronosticosList.add(new Pronostico(participanteAux,  partido , partido.getEquipo1(), ResultadoEnum.PERDEDOR));                   
                     }
                 
                 if (pb.getEmpata().equals("X")) {
@@ -187,7 +160,6 @@ public class LectorCsv {
         return pronosticosList;
     }
    
-
 
    public ArrayList<Participante> getParticipanteList(){
          return this.participanteList;
@@ -210,7 +182,6 @@ public class LectorCsv {
             }
         }   
 
-    
         this.setParticipanteList(listaApostadores);
         return this.participanteList;
 

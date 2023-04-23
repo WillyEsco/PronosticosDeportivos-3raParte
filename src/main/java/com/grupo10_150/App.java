@@ -1,6 +1,5 @@
 package com.grupo10_150;
 
-import java.lang.ref.Cleaner;
 
 /**
  * Pronosticos Deportivos
@@ -14,6 +13,8 @@ public class App {
 
     public static  void main(String[] args) throws Exception {
         //tomar los archivos a leer desde args();
+ 
+
         String resuFile;
         String pronFile;        
         if (args.length == 2) {
@@ -38,13 +39,12 @@ public class App {
              pronFile= ".\\src\\test\\resources\\pronostico.csv";
         }
             System.out.println("===========================================================");  
-            System.out.println("                       P R O D E");  
+            System.out.println("                         P R O D E");  
             System.out.println("===========================================================");  
        LectorCsv lectorCsv = new LectorCsv(resuFile,pronFile);
 
        //Obtengo todas las líneas del archivo CSV
        lectorCsv.parsearResultados();
-       lectorCsv.parsearProde();
 
        ArrayList <Partido> partidosList = lectorCsv.crearResultados();
        ArrayList <Pronostico> pronosticosList = lectorCsv.crearPronosticos(partidosList);
@@ -56,9 +56,12 @@ public class App {
             // proceso los participantes y acumulo los puntos de cada ronda
             for (Participante p : lectorCsv.getParticipanteList()){    
                 p.calcularPuntaje(pronosticosList);
-                System.out.println("==========================================================");
-                System.out.println(p.toString());
-                System.out.println("==========================================================");
+                String texto = p.toString();
+                if (texto != null){
+                    System.out.println(texto);
+                }
+                
+
             }
 
     }

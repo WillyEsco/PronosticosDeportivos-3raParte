@@ -156,7 +156,7 @@ El programa debe:
 
 Leyendo los 2 (dos) archivos, y suponiendo que cada resultado acertado suma 1 (un) punto, la salida del programa debe ser:
 
-**Mariana: 2**
+**Mariana: 3**
 
 **Pedro: 1**
 
