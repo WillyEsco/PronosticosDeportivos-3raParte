@@ -34,6 +34,8 @@ public class Participante {
         int total_puntos_imprimir = (int)  Math.round(this.puntajeList.get(0));
         int extras_ronda = (puntajeList.size() - 1 ) * (parametros.get("PUNTOS_GANAR"));
         int puntosObtenidosEnLaRonda = 0;
+        int fase = parametros.get("FASE_CANT_RONDAS");
+        int rondasTop = 0;
     for ( int ronda = 0 ; ronda < this.puntajeList.size(); ronda++) {
         if ( ronda == 0.0) {
             System.out.println("==========================================================");
@@ -46,7 +48,13 @@ public class Participante {
             if ( (parametros.get("PUNTOS_GANAR")) == puntosObtenidosEnLaRonda) {
                 System.out.println("Gana " + parametros.get("PUNTOS_EXTRAS_RONDA")  + " puntos extra por acertar ronda completa");
                 System.out.println("----------------------------------------------------------");
+                rondasTop++;
                 total_puntos_imprimir = total_puntos_imprimir + parametros.get("PUNTOS_EXTRAS_RONDA");
+             }
+             if (rondasTop == fase) {
+                System.out.println("Gana " + parametros.get("PUNTOS_EXTRAS_FASE")  + " puntos extra por acertar fase completa");
+                System.out.println("----------------------------------------------------------");
+                total_puntos_imprimir = total_puntos_imprimir + parametros.get("PUNTOS_EXTRAS_FASE");
              }
         }
     
