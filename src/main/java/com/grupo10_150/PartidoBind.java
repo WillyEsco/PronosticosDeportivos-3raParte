@@ -11,7 +11,7 @@ import lombok.Setter;
 @Getter
 @NoArgsConstructor  
 
-public class GPartidoBind {
+public class PartidoBind {
     @CsvBindByPosition(position = 0) 
     private int rondaID;    
     @CsvBindByPosition(position = 1) 
@@ -32,8 +32,4 @@ public class GPartidoBind {
     private String equipo2_nombre;
     @CsvBindByPosition(position = 9)
     private String equipo2_descripcion;
-
-
-
-
 }

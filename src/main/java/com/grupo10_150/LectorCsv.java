@@ -19,20 +19,18 @@ import lombok.Setter;
 
 public class LectorCsv {
     String resuFile;
-    List<GPartidoBind> lineasResultados;
+    List<PartidoBind> lineasResultados;
     ArrayList<Participante> participanteList;
     ArrayList<Ronda> rondaList;
 
-    public LectorCsv(String resuFile, String pronFile) {
+    public LectorCsv(String resuFile) {
         this.resuFile = resuFile;
         this.lineasResultados = new ArrayList<>();
         this.rondaList = new ArrayList<>();
     }
-
-
     public void parsearResultados() {
 
-        List<GPartidoBind> ListaDeResultados = null;
+        List<PartidoBind> ListaDeResultados = null;
 
         try {
             // En esta primera línea definimos el archivos que va a ingresar
@@ -42,7 +40,7 @@ public class LectorCsv {
                     // con esta configuración podemos elegir cual es el caracter que vamos a usar para delimitar
                     .withSeparator(';')
                     // Es necesario definir el tipo de dato que va a generar el objeto que estamos queriendo parsear a partir del CSV
-                    .withType(GPartidoBind.class)
+                    .withType(PartidoBind.class)
                     .build()
                     .parse();
 
@@ -68,7 +66,7 @@ public class LectorCsv {
         int i=0; // nro de match (vienen en orden)
         ronda = this.lineasResultados.get(0).getNroRonda();  
 
-        for ( GPartidoBind r : this.lineasResultados) {
+        for ( PartidoBind r : this.lineasResultados) {
 
             // agrego el partido al array de partidos   
             if (ronda != r.getNroRonda()){

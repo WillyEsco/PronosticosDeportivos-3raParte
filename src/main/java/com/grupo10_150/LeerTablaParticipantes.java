@@ -49,10 +49,10 @@ public class LeerTablaParticipantes {
                 participanteDBlist.add(participanteDB);
 
                 // Mostrar los valores obtenidos
-                System.out.print("ID: " + id);
-                System.out.print(", Apellido: " + Apellido);
-                System.out.print(", Apellido: " + Nombre);
-                System.out.println(", Puntos: " + Puntos);
+                // System.out.print("ID: " + id);
+                // System.out.print(", Apellido: " + Apellido);
+                // System.out.print(", Apellido: " + Nombre);
+                // System.out.println(", Puntos: " + Puntos);
             }
             // Esto se utiliza par cerrar la conexión con la base de datos
             resultado.close();

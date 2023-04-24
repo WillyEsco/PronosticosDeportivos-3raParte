@@ -16,14 +16,14 @@ public class App {
  
 
         String resuFile;
-        String pronFile;        
+        String controlFile;        
         if (args.length == 2) {
             if (args[0] == "resultados.cvs" ){
                 resuFile = args[0];
-                pronFile = args[1];           
+                controlFile = args[1];           
             } else {
                 resuFile = args[1];
-                pronFile = args[0];
+                controlFile = args[0];
             }
 
         }else{
@@ -36,23 +36,27 @@ public class App {
             // System.out.println("**         desde:  src\\test\\resources         **");
             // System.out.println("************************************************");
              resuFile = ".\\src\\test\\resources\\resultados.csv";
-             pronFile= ".\\src\\test\\resources\\pronostico.csv";
+             controlFile= ".\\src\\test\\resources\\control.csv";
         }
-            System.out.println("===========================================================");  
-            System.out.println("                         P R O D E");  
-            System.out.println("===========================================================");  
-       LectorCsv lectorCsv = new LectorCsv(resuFile,pronFile);
+  
+       LectorCsv lectorCsv = new LectorCsv(resuFile);
+       LectorControlCsv lectorControlCsv = new LectorControlCsv(controlFile);
 
-       //Obtengo todas las líneas del archivo CSV
+       //Obtengo todas las líneas de los archivos CSV
        lectorCsv.parsearResultados();
+       lectorControlCsv.parsearControlFile();
+    //    lectorControlCsv.cargarParametros();
 
        ArrayList <Partido> partidosList = lectorCsv.crearResultados();
        ArrayList <Pronostico> pronosticosList = lectorCsv.crearPronosticos(partidosList);
        
-        // Calculo los puntos
+     // Calculo los puntos
        
      //   ArrayList <Participante> participantesList = lectorCsv.procesoParticipantes(pronosticosList);
-            System.out.println("\nCant. de participantes: " + lectorCsv.getParticipanteList().size());
+     System.out.println("===========================================================");  
+     System.out.println("                         P R O D E");  
+     System.out.println("===========================================================");  
+     System.out.println("\nCant. de participantes: " + lectorCsv.getParticipanteList().size());
             // proceso los participantes y acumulo los puntos de cada ronda
             for (Participante p : lectorCsv.getParticipanteList()){    
                 p.calcularPuntaje(pronosticosList);
@@ -60,10 +64,7 @@ public class App {
                 if (texto != null){
                     System.out.println(texto);
                 }
-                
-
             }
-
     }
 }
     
