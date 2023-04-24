@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.*;
 
 //Lombok
 import lombok.Data;
@@ -38,7 +39,7 @@ public class LectorControlCsv {
         this.FASE_CANT_RONDAS = 0;
     }
 
-    public void parsearControlFile() {
+    public Map<String, Integer> parsearControlFile() {
         List<ControlBind> listaDeParametros = null;
         try {
             // En esta primera línea definimos el archivos que va a ingresar
@@ -63,5 +64,14 @@ public class LectorControlCsv {
         this.PUNTOS_EXTRAS_RONDA = listaDeParametros.get(0).getExtrasRonda();
         this.PUNTOS_EXTRAS_FASE = listaDeParametros.get(0).getExtrasFase();
         this.FASE_CANT_RONDAS = listaDeParametros.get(0).getFaseCantRondas();
+        Map<String, Integer> parametros = new HashMap<String, Integer>();
+        parametros.put("PUNTOS_GANAR", this.PUNTOS_GANAR);
+        parametros.put("PUNTOS_EMPATE", this.PUNTOS_EMPATE);
+        parametros.put("PUNTOS_PERDER", this.PUNTOS_PERDER);
+        parametros.put("PUNTOS_EXTRAS_RONDA", this.PUNTOS_EXTRAS_RONDA);
+        parametros.put("PUNTOS_EXTRAS_FASE", this.PUNTOS_EXTRAS_FASE);
+        parametros.put("FASE_CANT_RONDAS", this.FASE_CANT_RONDAS);
+        return parametros;
+
         }
 }

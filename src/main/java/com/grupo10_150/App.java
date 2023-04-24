@@ -7,13 +7,15 @@ package com.grupo10_150;
  */
 
 import java.util.ArrayList;
-
+import java.util.*;
 
 public class App {
 
     public static  void main(String[] args) throws Exception {
         //tomar los archivos a leer desde args();
- 
+        // definir un hashMap para guardar los parametros
+       
+
 
         String resuFile;
         String controlFile;        
@@ -44,7 +46,8 @@ public class App {
 
        //Obtengo todas las líneas de los archivos CSV
        lectorCsv.parsearResultados();
-       lectorControlCsv.parsearControlFile();
+       Map<String, Integer> parametros = new HashMap<>();
+       parametros = lectorControlCsv.parsearControlFile();
     //    lectorControlCsv.cargarParametros();
 
        ArrayList <Partido> partidosList = lectorCsv.crearResultados();
@@ -53,6 +56,15 @@ public class App {
      // Calculo los puntos
        
      //   ArrayList <Participante> participantesList = lectorCsv.procesoParticipantes(pronosticosList);
+     System.out.println("===========================================================");
+     System.out.println("                         C O N T R O L");
+     System.out.println("===========================================================");
+
+     for (Map.Entry<String, Integer> entry : parametros.entrySet()) {
+        String key = entry.getKey();
+        int value = entry.getValue();
+        System.out.println(key + " = " + value);
+    }
      System.out.println("===========================================================");  
      System.out.println("                         P R O D E");  
      System.out.println("===========================================================");  
