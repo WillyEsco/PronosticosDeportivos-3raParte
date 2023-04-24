@@ -44,8 +44,8 @@ public class Participante {
             System.out.println("Ronda " + ronda + " - Puntos:  " + String.valueOf(Math.round(this.puntajeList.get(ronda))) +" puntos");
             puntosObtenidosEnLaRonda = (int) Math.round(this.puntajeList.get(ronda));
             if ( (parametros.get("PUNTOS_GANAR")) == puntosObtenidosEnLaRonda) {
-                System.out.println("Gana puntos extra por acertar ronda completa");
-                System.out.println("----------------------------------------");
+                System.out.println("Gana " + parametros.get("PUNTOS_EXTRAS_RONDA")  + " puntos extra por acertar ronda completa");
+                System.out.println("----------------------------------------------------------");
                 total_puntos_imprimir = total_puntos_imprimir + parametros.get("PUNTOS_EXTRAS_RONDA");
              }
         }
