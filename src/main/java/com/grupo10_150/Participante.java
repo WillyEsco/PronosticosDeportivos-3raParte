@@ -30,8 +30,10 @@ public class Participante {
 
     public String imprimirTarjeta(Map<String, Integer> parametros) { 
    // cast double a int   
-        Long  total_puntos_imprimir = Math.round(this.puntajeList.get(0));
+
+        int total_puntos_imprimir = (int)  Math.round(this.puntajeList.get(0));
         int extras_ronda = (puntajeList.size() - 1 ) * (parametros.get("PUNTOS_GANAR"));
+        int puntosObtenidosEnLaRonda = 0;
     for ( int ronda = 0 ; ronda < this.puntajeList.size(); ronda++) {
         if ( ronda == 0.0) {
             System.out.println("==========================================================");
@@ -40,13 +42,15 @@ public class Participante {
            // String.valueOf(Math.round(this.puntajeList.get(0)))
         } else {
             System.out.println("Ronda " + ronda + " - Puntos:  " + String.valueOf(Math.round(this.puntajeList.get(ronda))) +" puntos");
+            puntosObtenidosEnLaRonda = (int) Math.round(this.puntajeList.get(ronda));
+            if ( (parametros.get("PUNTOS_GANAR")) == puntosObtenidosEnLaRonda) {
+                System.out.println("Gana puntos extra por acertar ronda completa");
+                System.out.println("----------------------------------------");
+                total_puntos_imprimir = total_puntos_imprimir + parametros.get("PUNTOS_EXTRAS_RONDA");
+             }
         }
-     }
-        if ( extras_ronda == total_puntos_imprimir ) {
-           System.out.println("Gana puntos extra por acertar ronda completa");
-            System.out.println("==========================================================");
-            total_puntos_imprimir = total_puntos_imprimir + parametros.get("PUNTOS_EXTRAS_RONDA");
-        }
+    
+    }
         System.out.println("PUNTOS OBTENIDOS: ");
         System.out.println("Puntaje Total:     " + String.valueOf(total_puntos_imprimir)  + " puntos " );
         System.out.println("==========================================================");
