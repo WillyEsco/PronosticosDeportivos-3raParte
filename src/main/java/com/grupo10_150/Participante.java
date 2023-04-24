@@ -55,7 +55,8 @@ public class Participante {
                 System.out.println("Gana " + parametros.get("PUNTOS_EXTRAS_FASE")  + " puntos extra por acertar fase completa");
                 System.out.println("----------------------------------------------------------");
                 total_puntos_imprimir = total_puntos_imprimir + parametros.get("PUNTOS_EXTRAS_FASE");
-             }
+                rondasTop=0;
+            }
         }
     
     }
