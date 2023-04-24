@@ -72,7 +72,7 @@ public class App {
             // proceso los participantes y acumulo los puntos de cada ronda
             for (Participante p : lectorCsv.getParticipanteList()){    
                 p.calcularPuntaje(pronosticosList);
-                String texto = p.toString();
+                String texto = p.imprimirTarjeta(parametros);
                 if (texto != null){
                     System.out.println(texto);
                 }

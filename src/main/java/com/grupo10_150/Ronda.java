@@ -21,10 +21,15 @@ public class Ronda {
     private int rondaID;
     private int nro;
     private ArrayList<Partido> partidosRonda;
+    private int cantPartidos;
 
     public Ronda(int rondaID, int nro, ArrayList<Partido> partidosRonda) {
         this.rondaID = rondaID;
         this.nro = nro;
         this.partidosRonda = partidosRonda;
+    }
+
+    public int getCantPartidos(){
+        return this.partidosRonda.size();
     }
 }

@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import java.util.ArrayList;
+import java.util.*;
 @Data
 @Setter
 @Getter
@@ -26,22 +27,30 @@ public class Participante {
         }   
             return this.puntajeList;
     }
- @Override
-    public String toString() { 
-   // cast double a int   
 
+    public String imprimirTarjeta(Map<String, Integer> parametros) { 
+   // cast double a int   
+        Long  total_puntos_imprimir = Math.round(this.puntajeList.get(0));
+        int extras_ronda = (puntajeList.size() - 1 ) * (parametros.get("PUNTOS_GANAR"));
     for ( int ronda = 0 ; ronda < this.puntajeList.size(); ronda++) {
         if ( ronda == 0.0) {
             System.out.println("==========================================================");
             System.out.println("NOMBRE " + nombre + " (ID: "  + participanteID +")\n") ;
-            System.out.println("PUNTOS OBTENIDOS: ");
-            System.out.println("Puntaje Total:     " + String.valueOf(Math.round(this.puntajeList.get(0)))  + " puntos " );
-            System.out.println("==========================================================");
+      
+           // String.valueOf(Math.round(this.puntajeList.get(0)))
         } else {
             System.out.println("Ronda " + ronda + " - Puntos:  " + String.valueOf(Math.round(this.puntajeList.get(ronda))) +" puntos");
         }
-       
-    }
+     }
+        if ( extras_ronda == total_puntos_imprimir ) {
+           System.out.println("Gana puntos extra por acertar ronda completa");
+            System.out.println("==========================================================");
+            total_puntos_imprimir = total_puntos_imprimir + parametros.get("PUNTOS_EXTRAS_RONDA");
+        }
+        System.out.println("PUNTOS OBTENIDOS: ");
+        System.out.println("Puntaje Total:     " + String.valueOf(total_puntos_imprimir)  + " puntos " );
+        System.out.println("==========================================================");
+    
     return "";
  }
 
