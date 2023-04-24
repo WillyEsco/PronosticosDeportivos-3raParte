@@ -21,6 +21,11 @@ public class Pronostico {
   //  public double getPuntos() {
         public void  getPuntos() {
         double puntos = 0;
+        // if (partido.getGana() == this.equipo.getEquipoID()) { 
+        //     if (this.resultadoPronosticado == ResultadoEnum.GANADOR) {
+        //         puntos = puntos + (parametros.get("PUNTOS_GANAR") * 0.5);
+        //     }             
+        // }
 
         if (partido.getGana() == 0 && this.resultadoPronosticado == ResultadoEnum.EMPATE){
             puntos = puntos + (parametros.get("PUNTOS_EMPATE") * 0.5);
@@ -43,12 +48,9 @@ public class Pronostico {
         if (arrayPuntos.size() == this.partido.getRondaNro() ) {
             // preparo el contador para sumar la ronda uno en el elemento uno del array
             arrayPuntos.add(partido.getRondaNro(), 0.0);
-
         }
 
 
-    
-      
         arrayPuntos.set(partido.getRondaNro(), arrayPuntos.get(this.partido.getRondaNro()) + puntos);
         arrayPuntos.set(0, arrayPuntos.get(0) + puntos);
 

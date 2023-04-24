@@ -20,6 +20,49 @@
 
   <dependencies>
 
+
+    <dependency>
+      <groupId>org.junit</groupId>
+      <artifactId>junit5-engine</artifactId>
+      <version>5.0.0-ALPHA</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.junit</groupId>
+      <artifactId>junit5-api</artifactId>
+      <version>5.0.0-ALPHA</version>
+    </dependency>
+
+
+  
+
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.2</version>
+    </dependency>
+
+
+    <dependency>
+      <groupId>info.cukes</groupId>
+      <artifactId>cucumber-junit</artifactId>
+      <version>1.2.6</version>
+      <type>pom</type>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.testifyproject.junit5</groupId>
+      <artifactId>junit5</artifactId>
+      <version>1.0.6</version>
+      <type>pom</type>
+    </dependency>
+
+
+
+
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
