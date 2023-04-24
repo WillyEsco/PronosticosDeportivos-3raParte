@@ -51,7 +51,7 @@ public class App {
     //    lectorControlCsv.cargarParametros();
 
        ArrayList <Partido> partidosList = lectorCsv.crearResultados();
-       ArrayList <Pronostico> pronosticosList = lectorCsv.crearPronosticos(partidosList);
+       ArrayList <Pronostico> pronosticosList = lectorCsv.crearPronosticos(partidosList,parametros);
        
      // Calculo los puntos
        

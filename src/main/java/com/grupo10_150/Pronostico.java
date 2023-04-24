@@ -1,6 +1,7 @@
 package com.grupo10_150;
 
 import java.util.ArrayList;
+import java.util.*;	
 
 
 public class Pronostico {
@@ -8,26 +9,28 @@ public class Pronostico {
     private Partido partido;
     private Equipo equipo;
     private ResultadoEnum resultadoPronosticado;
+    private Map<String, Integer> parametros = new HashMap<String, Integer>();
 
-    public Pronostico(Participante participante, Partido partido, Equipo equipo, ResultadoEnum resultadoPronosticado) {
+    public Pronostico(Participante participante, Partido partido, Equipo equipo, ResultadoEnum resultadoPronosticado, Map<String, Integer> parametros) {
         this.participante = participante;
         this.partido = partido;
         this.equipo = equipo;
         this.resultadoPronosticado = resultadoPronosticado;
+        this.parametros = parametros;
     }
   //  public double getPuntos() {
         public void  getPuntos() {
         double puntos = 0;
 
         if (partido.getGana() == 0 && this.resultadoPronosticado == ResultadoEnum.EMPATE){
-            puntos = 0.5;
+            puntos = puntos + (parametros.get("PUNTOS_EMPATE") * 0.5);
         }
         if (partido.getGana() == this.equipo.getEquipoID() && this.resultadoPronosticado == ResultadoEnum.GANADOR){
-            puntos = 0.5;
+            puntos = puntos + (parametros.get("PUNTOS_GANAR") * 0.5);
         }
         if (partido.getGana() != this.equipo.getEquipoID() && this.resultadoPronosticado == ResultadoEnum.PERDEDOR
             && partido.getGana() != 0){
-            puntos = 0.5;
+                puntos = puntos + (parametros.get("PUNTOS_PERDER") * 0.5);
         }
         
         ArrayList<Double> arrayPuntos = this.participante.getPuntajeList();

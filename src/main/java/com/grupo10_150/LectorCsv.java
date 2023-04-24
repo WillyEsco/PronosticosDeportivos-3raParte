@@ -4,6 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.*;
 
 //Lombok
 import lombok.Data;
@@ -88,7 +89,7 @@ public class LectorCsv {
     }
 
    // Crear pronosticos
-   public ArrayList<Pronostico> crearPronosticos(ArrayList<Partido> partidosList){
+   public ArrayList<Pronostico> crearPronosticos(ArrayList<Partido> partidosList, Map<String, Integer> parametros){
         ArrayList<Pronostico> pronosticosList = new ArrayList<Pronostico>(); 
         ArrayList<Participante> participanteList = new ArrayList<Participante>();
         ArrayList<Double> puntajeList = new ArrayList<Double>();
@@ -130,23 +131,23 @@ public class LectorCsv {
        
                 if (pb.getGana1().equals("X")) {
                     // busco equipo1 y equipo2 en partidosList
-                    pronosticosList.add(new Pronostico(participanteAux, partido, partido.getEquipo1(), ResultadoEnum.GANADOR));
-                    pronosticosList.add(new Pronostico(participanteAux, partido, partido.getEquipo2(), ResultadoEnum.PERDEDOR));
+                    pronosticosList.add(new Pronostico(participanteAux, partido, partido.getEquipo1(), ResultadoEnum.GANADOR, parametros));
+                    pronosticosList.add(new Pronostico(participanteAux, partido, partido.getEquipo2(), ResultadoEnum.PERDEDOR, parametros));
 
                 }
         
                 if (pb.getGana2().equals("X")) {
                     // busco equipo1_id en partidosList   
-                        pronosticosList.add(new Pronostico(participanteAux,  partido, partido.getEquipo2(), ResultadoEnum.GANADOR));
-                        pronosticosList.add(new Pronostico(participanteAux,  partido , partido.getEquipo1(), ResultadoEnum.PERDEDOR));                   
+                        pronosticosList.add(new Pronostico(participanteAux,  partido, partido.getEquipo2(), ResultadoEnum.GANADOR, parametros));
+                        pronosticosList.add(new Pronostico(participanteAux,  partido , partido.getEquipo1(), ResultadoEnum.PERDEDOR, parametros));                   
                     }
                 
                 if (pb.getEmpata().equals("X")) {
                     // busco equipo1_id en partidosList              
-                       pronosticosList.add(new Pronostico(participanteAux, partido , partido.getEquipo1(), ResultadoEnum.EMPATE));   
+                       pronosticosList.add(new Pronostico(participanteAux, partido , partido.getEquipo1(), ResultadoEnum.EMPATE, parametros));   
                             // indice = pronosticosList.size()-1;
                             // pronosticosList.get(indice).getPuntos();      
-                       pronosticosList.add(new Pronostico(participanteAux, partido , partido.getEquipo2(), ResultadoEnum.EMPATE));                            
+                       pronosticosList.add(new Pronostico(participanteAux, partido , partido.getEquipo2(), ResultadoEnum.EMPATE, parametros));                            
                             // indice = pronosticosList.size()-1;
                             // pronosticosList.get(indice).getPuntos();                     
                     }
