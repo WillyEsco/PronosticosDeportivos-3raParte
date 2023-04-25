@@ -20,6 +20,12 @@
 
   <dependencies>
 
+<dependency>
+  <groupId>junit</groupId>
+  <artifactId>junit</artifactId>
+  <version>4.13.2</version>
+  <scope>test</scope>
+</dependency>
 
     <dependency>
       <groupId>org.junit</groupId>
@@ -34,10 +40,6 @@
       <version>5.0.0-ALPHA</version>
     </dependency>
 
-
-  
-
-
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -51,16 +53,6 @@
       <version>1.2.6</version>
       <type>pom</type>
     </dependency>
-
-
-    <dependency>
-      <groupId>org.testifyproject.junit5</groupId>
-      <artifactId>junit5</artifactId>
-      <version>1.0.6</version>
-      <type>pom</type>
-    </dependency>
-
-
 
 
     <dependency>

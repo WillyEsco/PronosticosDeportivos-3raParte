@@ -1,8 +1,8 @@
 package com.grupo10_150;
 import com.grupo10_150.Equipo;
 import com.grupo10_150.Partido;
+import org.junit.Assert.assertEquals;
 import org.junit.*;
-import org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.*;
 import java.util.HashMap;
@@ -14,8 +14,8 @@ public class PartidoTest {
 
     // test para getGana()
 
-    @Test
-    public void testGetGana() {
+   @Test 
+   public void testGetGana() {
         // Arrange
         // Creo un partido
         Equipo equipo1 = new Equipo(1, "Argentina", "Seleccionado");

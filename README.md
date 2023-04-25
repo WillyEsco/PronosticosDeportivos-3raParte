@@ -39,18 +39,29 @@ mvn exec:java -Dexec.mainClass=com.grupo10_150.App
 └── src
     └── main
         └── java
-            ├── grupo10_150
+            ├── com\grupo10_150
             │   ├── Persona.java
             │   ├── Partido.java
-            │   ├── Resultado.java
+            │   ├── PartidoTest.java
+            │   ├── ControlBind.java
+            │   ├── ResultadoEnum.java
+            │   ├── LeerTablaParticipantes.java
+            │   ├── LeerTablaPronostico.java
             │   ├── Ronda.java
+            │   ├── Pronostico.java
+            │   ├── PronosticoDB.java
+            │   ├── Equipo.java
+            │   ├── LectorControlCsv.java
             │   ├── Participante.java
+            │   ├── ParticipanteDB.java
             │   ├── ResultadoBind.java
             │   ├── PronosticoBind.java
             │   ├── LectorCsv.java
             │   └── App.java
+            ├── conexion\sql
+            │   └── ConectorSQL.java
             └── resources
-                └── pronostico.csv
+                └── control.csv
                 └── resultados.csv
 
    
@@ -193,4 +204,8 @@ En esta entrega, el programa debe:
 - Recibir como argumento un archivo con los resultados y otro con configuración, por ejemplo: conexión a la DB, puntaje por partido ganado, puntos extra, etc.
 
 ------
+# __Diagrama de Clases entrega 3__ 
+<p align="center">
+  <img  src="./assets/entrega3.png" width="90%" height="90%"  />
+</p>
 
