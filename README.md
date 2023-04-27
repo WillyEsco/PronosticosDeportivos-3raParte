@@ -209,3 +209,9 @@ En esta entrega, el programa debe:
   <img  src="./assets/entrega3.png" width="90%" height="90%"  />
 </p>
 
+------
+# __Ejemplo de salida por consola__ 
+<p align="center">
+  <img  src="./assets/captura.png" width="90%" height="90%"  />
+</p>
+
