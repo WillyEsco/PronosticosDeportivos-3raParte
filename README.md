@@ -1,16 +1,15 @@
 # __Pronósticos Deportivos__  -  ___Grupo 10/150___
 ##  ___Entrega 3___ (Bases de Datos) 
 
-<!-- <video width="640" height="360" controls>
-  <source src="ruta_del_video.mp4" type="video/mp4">
-  <source src="ruta_del_video.ogg" type="video/ogg">
-  Tu navegador no soporta la etiqueta de video.
-</video> -->
-<div align="center" class="embed-responsive embed-responsive-16by9">
+  <!-- <video width="640" height="360" controls>
+  <source src="https://youtu.be/B3hzGWksw70" >
+ 
+    </video>   -->
+ <div align="center" class="embed-responsive embed-responsive-16by9">
                 <video width="90%" height="90%"  controls>    
-                    <source src="https://youtu.be/B3hzGWksw70" type="video/mp4">                   
+                    <source src="./assets/PRODE150-10.m4v" type="video/mp4">                   
                 </video>
-</div>
+</div>  
 
 ## __Datos de la Presentación__
 
